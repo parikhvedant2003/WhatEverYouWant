@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 200px;
+            height: 200px;
+            display: none;
+        }
+        td {
+            border: 2px solid black;
+            width: 20%;
+            height: 20%;
+            text-align: center;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Bingo</h2>
+    <button onclick="beginGame()">Begin</button>
+    <button onclick="endGame()">End</button>
+    <table id="gameBoard">
+        <tr>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+        </tr>
+        <tr>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+        </tr>
+        <tr>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+        </tr>
+        <tr>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+        </tr>
+        <tr>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+            <td onclick="makeMove(this)"></td>
+        </tr>
+    </table>
+    <button id="startGame" onclick="checkBoard()" style="display: none;">Start Game</button>
+
+    <script>
+        function beginGame() {
+            document.getElementById("gameBoard").style.display = "table";
+            document.getElementById("startGame").removeAttribute("style");
+        }
+        function endGame() {
+            document.getElementById("gameBoard").style.display = null;
+        }
+        let currentPlayer = 1;
+        function makeMove(cell) {
+            if (cell.textContent === "") {
+                cell.textContent = currentPlayer++;
+            }
+        }
+        function checkBoard() {
+            const cells = document.querySelectorAll("td");
+            let isFilled = true;
+            cells.forEach(cell => {
+                if (cell.textContent === "") {
+                    isFilled = false;
+                }
+            });
+            if (!isFilled) {
+                alert("The board is not filled yet!");
+            }
+            else {
+                alert("The board is fully filled!");
+            }
+        }
+    </script>
+</body>
+</html>
